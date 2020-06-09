@@ -41,6 +41,7 @@ COMMON_SRC = \
             drivers/display.c \
             drivers/display_canvas.c \
             drivers/display_font_metadata.c \
+            drivers/display_widgets.c \
             drivers/exti.c \
             drivers/io.c \
             drivers/io_pca9685.c \
