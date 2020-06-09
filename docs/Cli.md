@@ -352,6 +352,10 @@ A shorter form is also supported to enable and disable functions using `serial <
 |  osd_temp_label_align | LEFT | Allows to chose between left and right alignment for the OSD temperature sensor labels. Valid values are `LEFT` and `RIGHT` |
 |  osd_hud_wp_disp | OFF | Controls display of the next waypoints in the HUD.|
 |  osd_ahi_style | DEFAULT | Sets OSD Artificial Horizon style "DEFAULT" or "LINE" for the FrSky Graphical OSD. |
+|  osd_ahi_bordered | OFF | Shows a border/corners around the AHI region (pixel OSD only). |
+|  osd_ahi_width | 132 | AHI width in pixels (pixel OSD only). |
+|  osd_ahi_height | 162 | AHI height in pixels (pixel OSD only). |
+|  osd_ahi_vertical_offset | -18 | AHI vertical offset from center in pixel (pixel OSD only). |
 |  display_force_sw_blink  | OFF | OFF = OSD hardware blink / ON = OSD software blink. If OSD warning text/values are invisible, try setting this to ON |
 |  magzero_x  | 0 | Magnetometer calibration X offset. If its 0 none offset has been applied and calibration is failed. |
 |  magzero_y  | 0 | Magnetometer calibration Y offset. If its 0 none offset has been applied and calibration is failed. |

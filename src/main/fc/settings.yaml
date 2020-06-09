@@ -2016,6 +2016,23 @@ groups:
       - name: osd_ahi_style
         table: osd_ahi_style
 
+      - name: osd_ahi_bordered
+        field: ahi_bordered
+        type: bool
+
+      - name: osd_ahi_width
+        field: ahi_width
+        max: 255
+
+      - name: osd_ahi_height
+        field: ahi_height
+        max: 255
+
+      - name: osd_ahi_vertical_offset
+        field: ahi_vertical_offset
+        min: -128
+        max: 127
+
   - name: PG_SYSTEM_CONFIG
     type: systemConfig_t
     headers: ["fc/config.h"]
