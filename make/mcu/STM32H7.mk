@@ -1,5 +1,5 @@
 #
-# F7 Make file include
+# H7 Make file include
 #
 
 #CMSIS
@@ -128,7 +128,7 @@ INCLUDE_DIRS    := $(INCLUDE_DIRS) \
                    $(USBHIDCDC_DIR)/Inc \
                    $(USBMSC_DIR)/Inc \
                    $(CMSIS_DIR)/Core/Include \
-                   $(ROOT)/lib/main/STM32F7/Drivers/CMSIS/Device/ST/STM32H7xx/Include \
+                   $(ROOT)/lib/main/STM32H7/Drivers/CMSIS/Device/ST/STM32H7xx/Include \
                    $(ROOT)/src/main/vcp_hal
 
 ifneq ($(filter SDCARD,$(FEATURES)),)
@@ -148,17 +148,30 @@ ARCH_FLAGS      = -mthumb -mcpu=cortex-m7 -mfloat-abi=hard -mfpu=fpv5-sp-d16 -fs
 DEVICE_FLAGS    = -DUSE_HAL_DRIVER -DUSE_FULL_LL_DRIVER
 
 ifeq ($(TARGET),$(filter $(TARGET),$(H743xI_TARGETS)))
-DEVICE_FLAGS   += -DSTM32H743xx
-LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_h743.ld
-STARTUP_SRC     = startup_stm32h743xx.s
-TARGET_FLASH   := 2048
+DEVICE_FLAGS       += -DSTM32H743xx
+DEFAULT_LD_SCRIPT   = $(LINKER_DIR)/stm32_flash_h743.ld
+STARTUP_SRC         = startup_stm32h743xx.s
+MCU_FLASH_SIZE      := 2048
+DEVICE_FLAGS       += -DMAX_MPU_REGIONS=16
+
 else ifeq ($(TARGET),$(filter $(TARGET),$(H750xB_TARGETS)))
-DEVICE_FLAGS   += -DSTM32H750xx
-LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_h750_128k.ld
-STARTUP_SRC     = startup_stm32h743xx.s
-TARGET_FLASH   := 128
+DEVICE_FLAGS       += -DSTM32H750xx
+DEFAULT_LD_SCRIPT   = $(LINKER_DIR)/stm32_flash_h750_128k.ld
+STARTUP_SRC          = startup_stm32h743xx.s
+DEFAULT_MCU_FLASH_SIZE := 128
+DEVICE_FLAGS       += -DMAX_MPU_REGIONS=16
+
+ifeq ($(MCU_FLASH_SIZE),)
+MCU_FLASH_SIZE := $(DEFAULT_MCU_FLASH_SIZE) 
+endif
+
+
 else
 $(error Unknown MCU for H7 target)
+endif
+
+ifeq ($(LD_SCRIPT),)
+LD_SCRIPT = $(DEFAULT_LD_SCRIPT)
 endif
 
 DEVICE_FLAGS    += -DHSE_VALUE=$(HSE_VALUE)
@@ -167,28 +180,31 @@ TARGET_FLAGS    = -D$(TARGET)
 
 VCP_SRC = \
             vcp_hal/usbd_desc.c \
-            vcp_hal/usbd_conf.c \
+            vcp_hal/usbd_conf_stm32h7xx.c \
             vcp_hal/usbd_cdc_interface.c \
             drivers/serial_usb_vcp.c \
             drivers/usb_io.c
 
 MCU_COMMON_SRC = \
             target/system_stm32h7xx.c \
-            drivers/accgyro/accgyro.c \
-            drivers/accgyro/accgyro_mpu.c \
-            drivers/adc_stm32h7xx.c \
-            drivers/bus_i2c_hal.c \
-            drivers/dma_stm32h7xx.c \
-            drivers/bus_spi_hal.c \
-            drivers/timer.c \
-            drivers/timer_impl_hal.c \
-            drivers/timer_stm32h7xx.c \
-            drivers/uart_inverter.c \
-            drivers/system_stm32h7xx.c \
-            drivers/serial_uart_stm32h7xx.c \
-            drivers/serial_softserial.c \
-            drivers/serial_uart_hal.c \
-            drivers/sdcard/sdmmc_sdio_h7xx.c
+            drivers/memprot_hal.c \
+            drivers/memprot_stm32h7xx.c \
+
+#            drivers/accgyro/accgyro.c \
+#            drivers/accgyro/accgyro_mpu.c \
+#            drivers/adc_stm32h7xx.c \
+#            drivers/bus_i2c_hal.c \
+#            drivers/dma_stm32h7xx.c \
+#            drivers/bus_spi_hal.c \
+#            drivers/timer.c \
+#            drivers/timer_impl_hal.c \
+#            drivers/timer_stm32h7xx.c \
+#            drivers/uart_inverter.c \
+#            drivers/system_stm32h7xx.c \
+#            drivers/serial_uart_stm32h7xx.c \
+#            drivers/serial_softserial.c \
+#            drivers/serial_uart_hal.c \
+#            drivers/sdcard/sdmmc_sdio_h7xx.c
 
 MCU_EXCLUDES = \
             drivers/bus_spi.c \

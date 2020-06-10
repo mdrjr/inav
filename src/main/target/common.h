@@ -17,6 +17,36 @@
 
 #pragma once
 
+#ifdef STM32F7
+#define USE_ITCM_RAM
+#endif
+
+#ifdef STM32H7
+#define USE_ITCM_RAM
+#endif
+
+#ifdef USE_ITCM_RAM
+#define FAST_CODE                   __attribute__((section(".tcm_code")))
+#define NOINLINE                    __attribute__((noinline))
+#else
+#define FAST_CODE
+#define NOINLINE
+#endif
+
+#ifdef USE_CCM_CODE
+#define CCM_CODE                    __attribute__((section(".ccm_code")))
+#else
+#define CCM_CODE
+#endif
+
+#ifdef USE_FAST_RAM
+#define FAST_RAM_ZERO_INIT          __attribute__ ((section(".fastram_bss"), aligned(4)))
+#define FAST_RAM                    __attribute__ ((section(".fastram_data"), aligned(4)))
+#else
+#define FAST_RAM_ZERO_INIT
+#define FAST_RAM
+#endif // USE_FAST_RAM
+
 #if defined(STM32F3)
 #define DYNAMIC_HEAP_SIZE   1024
 #else
@@ -49,6 +79,8 @@
 #define USE_SERVO_SBUS
 #endif
 
+#define USE_TIMER
+#define USE_PWM_OUTPUT
 #define USE_ADC_AVERAGING
 #define USE_64BIT_TIME
 #define USE_BLACKBOX
@@ -65,7 +97,7 @@
 #define SCHEDULER_DELAY_LIMIT           100
 #endif
 
-#if (FLASH_SIZE > 256)
+#if (TARGET_FLASH_SIZE > 256)
 #define USE_MR_BRAKING_MODE
 #define USE_PITOT
 #define USE_PITOT_ADC
@@ -121,11 +153,11 @@
 #define USE_D_BOOST
 #define USE_ANTIGRAVITY
 
-#else // FLASH_SIZE < 256
+#else // TARGET_FLASH_SIZE < 256
 #define LOG_LEVEL_MAXIMUM LOG_LEVEL_ERROR
 #endif
 
-#if (FLASH_SIZE > 128)
+#if (TARGET_FLASH_SIZE > 128)
 #define NAV_FIXED_WING_LANDING
 #define USE_AUTOTUNE_FIXED_WING
 #define USE_LOG
@@ -172,12 +204,8 @@
 // Wind estimator
 #define USE_WIND_ESTIMATOR
 
-#else // FLASH_SIZE < 128
+#else // TARGET_FLASH_SIZE < 128
 
 #define SKIP_TASK_STATISTICS
 
-#endif
-
-#ifdef STM32F7
-#define USE_ITCM_RAM
 #endif

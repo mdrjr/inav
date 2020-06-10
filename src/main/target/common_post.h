@@ -27,24 +27,31 @@
 
 // Enable MSP_DISPLAYPORT for F3 targets without builtin OSD,
 // since it's used to display CMS on MWOSD
-#if !defined(USE_MSP_DISPLAYPORT) && (FLASH_SIZE > 128) && !defined(USE_OSD)
+#if !defined(USE_MSP_DISPLAYPORT) && (TARGET_FLASH_SIZE > 128) && !defined(USE_OSD)
 #define USE_MSP_DISPLAYPORT
 #endif
 
-#if defined(USE_OSD) && (FLASH_SIZE > 256)
+#if defined(USE_OSD) && (TARGET_FLASH_SIZE > 256)
 #define USE_CANVAS
+#endif
+
+#if defined(CONFIG_IN_RAM)
+#ifndef EEPROM_SIZE
+#define EEPROM_SIZE     4096
+#endif
+extern uint8_t eepromData[EEPROM_SIZE];
+#define __config_start (*eepromData)
+#define __config_end (*ARRAYEND(eepromData))
+#else
+#ifndef CONFIG_IN_FLASH
+#define CONFIG_IN_FLASH
+#endif
+extern uint8_t __config_start;   // configured via linker script when building binaries.
+extern uint8_t __config_end;
 #endif
 
 #ifdef USE_ESC_SENSOR
     #define USE_RPM_FILTER
-#endif
-
-#ifdef USE_ITCM_RAM
-#define FAST_CODE                   __attribute__((section(".tcm_code")))
-#define NOINLINE                    __NOINLINE
-#else
-#define FAST_CODE
-#define NOINLINE
 #endif
 
 #ifdef STM32F3
