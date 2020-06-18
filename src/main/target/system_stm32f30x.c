@@ -100,6 +100,7 @@
   */
 
 #include "stm32f30x.h"
+#include "drivers/system.h"
 
 uint32_t hse_value = HSE_VALUE;
 

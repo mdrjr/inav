@@ -65,6 +65,7 @@ VCP_SRC = \
 
 
 MCU_COMMON_SRC = \
+            config/config_streamer_stm32f3.c \
             startup_stm32f30x_md_gcc.S \
             target/system_stm32f30x.c \
             drivers/accgyro/accgyro.c \

@@ -30,6 +30,7 @@ typedef uint64_t config_streamer_buffer_align_type_t;
 #define CONFIG_STREAMER_BUFFER_SIZE 4
 typedef uint32_t config_streamer_buffer_align_type_t;
 #endif
+
 typedef struct config_streamer_s {
     uintptr_t address;
     int size;

@@ -316,6 +316,7 @@
 
 #include "stm32f4xx.h"
 #include "system_stm32f4xx.h"
+#include "drivers/system.h"
 
 uint32_t hse_value = HSE_VALUE;
 

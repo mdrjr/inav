@@ -62,11 +62,10 @@
   */
 
 #include "stm32h7xx.h"
-#include "drivers/system.h"
 #include "platform.h"
 #include "string.h"
 #include "common/utils.h"
-
+#include "drivers/system.h"
 #include "build/debug.h"
 
 void forcedSystemResetWithoutDisablingCaches(void);

@@ -98,8 +98,6 @@ resourceType_e IOGetResources(IO_t io);
 IO_t IOGetByTag(ioTag_t tag);
 
 void IOConfigGPIO(IO_t io, ioConfig_t cfg);
-#if defined(STM32F3) || defined(STM32F4) || defined(STM32F7)
 void IOConfigGPIOAF(IO_t io, ioConfig_t cfg, uint8_t af);
-#endif
 
 void IOInitGlobal(void);

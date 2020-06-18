@@ -186,6 +186,7 @@ VCP_SRC = \
             drivers/usb_io.c
 
 MCU_COMMON_SRC = \
+            config/config_streamer_stm32h7.c \
             target/system_stm32h7xx.c \
             drivers/memprot_hal.c \
             drivers/memprot_stm32h7xx.c \

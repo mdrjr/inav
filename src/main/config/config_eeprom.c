@@ -25,7 +25,6 @@
 #include "build/build_config.h"
 
 #include "common/crc.h"
-#include "common/utils.h"
 
 #include "config/config_eeprom.h"
 #include "config/config_streamer.h"
