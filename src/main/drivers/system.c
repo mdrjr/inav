@@ -29,25 +29,6 @@
 #include "drivers/system.h"
 #include "drivers/time.h"
 
-#ifndef EXTI_CALLBACK_HANDLER_COUNT
-#define EXTI_CALLBACK_HANDLER_COUNT 1
-#endif
-
-extiCallbackHandlerConfig_t extiHandlerConfigs[EXTI_CALLBACK_HANDLER_COUNT];
-
-void registerExtiCallbackHandler(IRQn_Type irqn, extiCallbackHandlerFunc *fn)
-{
-    for (int index = 0; index < EXTI_CALLBACK_HANDLER_COUNT; index++) {
-        extiCallbackHandlerConfig_t *candidate = &extiHandlerConfigs[index];
-        if (!candidate->fn) {
-            candidate->fn = fn;
-            candidate->irqn = irqn;
-            return;
-        }
-    }
-    failureMode(FAILURE_DEVELOPER); // EXTI_CALLBACK_HANDLER_COUNT is too low for the amount of handlers required.
-}
-
 // cached value of RCC->CSR
 uint32_t cachedRccCsrValue;
 
