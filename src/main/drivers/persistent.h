@@ -37,6 +37,7 @@ typedef enum {
 #define RESET_NONE                                      0
 #define RESET_BOOTLOADER_REQUEST_ROM                    1
 #define RESET_MSC_REQUEST                               2  // MSC invocation was requested
+#define RESET_FORCED                                    3
 
 void persistentObjectInit(void);
 uint32_t persistentObjectRead(persistentObjectId_e id);

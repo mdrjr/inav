@@ -190,18 +190,18 @@ MCU_COMMON_SRC = \
             target/system_stm32h7xx.c \
             drivers/memprot_hal.c \
             drivers/memprot_stm32h7xx.c \
+            drivers/system_stm32h7xx.c \
+            drivers/timer.c \
+#            drivers/timer_stm32h7xx.c \
 
+#            drivers/timer_impl_hal.c \
 #            drivers/accgyro/accgyro.c \
 #            drivers/accgyro/accgyro_mpu.c \
 #            drivers/adc_stm32h7xx.c \
 #            drivers/bus_i2c_hal.c \
 #            drivers/dma_stm32h7xx.c \
 #            drivers/bus_spi_hal.c \
-#            drivers/timer.c \
-#            drivers/timer_impl_hal.c \
-#            drivers/timer_stm32h7xx.c \
 #            drivers/uart_inverter.c \
-#            drivers/system_stm32h7xx.c \
 #            drivers/serial_uart_stm32h7xx.c \
 #            drivers/serial_softserial.c \
 #            drivers/serial_uart_hal.c \

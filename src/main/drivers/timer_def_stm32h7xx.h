@@ -19,8 +19,8 @@
 
 #define timerDMASafeType_t  uint32_t
 
-//#define DEF_TIM_DMAMAP__D(dma, stream, channel)         DMA_TAG(dma, stream, channel)
-//#define DEF_TIM_DMAMAP__NONE                            DMA_NONE
+#define DEF_TIM_DMAMAP__D(dma, stream)  DMA_TAG(dma, stream, 0)
+#define DEF_TIM_DMAMAP__NONE            DMA_NONE
 
 #define DEF_TIM(tim, ch, pin, usage, flags, dmavar) {   \
     tim,                                                \

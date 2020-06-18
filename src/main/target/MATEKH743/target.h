@@ -71,6 +71,10 @@
 
 
 
+#define MAX_PWM_OUTPUT_PORTS        15
+
+
+
 
 #define TARGET_IO_PORTA 0xffff
 #define TARGET_IO_PORTB 0xffff
@@ -196,7 +200,6 @@
 
 #define USE_SERIAL_4WAY_BLHELI_INTERFACE
 
-#define MAX_PWM_OUTPUT_PORTS        15
 #define USE_DSHOT
 #define USE_ESC_SENSOR
 #define USE_SERIALSHOT

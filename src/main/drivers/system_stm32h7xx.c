@@ -23,11 +23,19 @@
 #include "platform.h"
 
 #include "drivers/accgyro/accgyro_mpu.h"
+#include "drivers/persistent.h"
 #include "drivers/exti.h"
 #include "drivers/nvic.h"
 #include "drivers/system.h"
 
 void SystemClock_Config(void);
+
+void forcedSystemResetWithoutDisablingCaches(void)
+{
+    persistentObjectWrite(PERSISTENT_OBJECT_RESET_REASON, RESET_FORCED);
+    __disable_irq();
+    NVIC_SystemReset();    
+}
 
 void enableGPIOPowerUsageAndNoiseReductions(void)
 {
