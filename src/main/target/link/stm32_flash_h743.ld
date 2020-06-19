@@ -57,4 +57,4 @@ MEMORY
 REGION_ALIAS("STACKRAM", DTCM_RAM)
 REGION_ALIAS("FASTRAM",  DTCM_RAM)
 
-INCLUDE "stm32_flash_f7_split.ld"
+INCLUDE "stm32_flash_h7_split.ld"
