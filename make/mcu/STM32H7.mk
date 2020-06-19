@@ -192,9 +192,8 @@ MCU_COMMON_SRC = \
             drivers/memprot_stm32h7xx.c \
             drivers/system_stm32h7xx.c \
             drivers/timer.c \
-#            drivers/timer_stm32h7xx.c \
-
-#            drivers/timer_impl_hal.c \
+            drivers/timer_stm32h7xx.c \
+            drivers/timer_impl_hal.c \
 #            drivers/accgyro/accgyro.c \
 #            drivers/accgyro/accgyro_mpu.c \
 #            drivers/adc_stm32h7xx.c \
