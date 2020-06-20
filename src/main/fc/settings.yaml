@@ -2033,6 +2033,11 @@ groups:
         min: -128
         max: 127
 
+      - name: osd_sidebar_horizontal_offset
+        field: sidebar_horizontal_offset
+        min: -128
+        max: 127
+
   - name: PG_SYSTEM_CONFIG
     type: systemConfig_t
     headers: ["fc/config.h"]
