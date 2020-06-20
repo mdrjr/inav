@@ -2038,6 +2038,15 @@ groups:
         min: -128
         max: 127
 
+      - name: osd_left_sidebar_scroll_step
+        field: left_sidebar_scroll_step
+        max: 255
+
+      - name: osd_right_sidebar_scroll_step
+        field: right_sidebar_scroll_step
+        max: 255
+
+
   - name: PG_SYSTEM_CONFIG
     type: systemConfig_t
     headers: ["fc/config.h"]

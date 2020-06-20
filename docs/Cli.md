@@ -349,6 +349,8 @@ A shorter form is also supported to enable and disable functions using `serial <
 |  osd_current_alarm | 0 | Value above which the OSD current consumption element will start blinking. Measured in full Amperes. |
 |  osd_estimations_wind_compensation  | ON | Use wind estimation for remaining flight time/distance estimation |
 |  osd_failsafe_switch_layout  | OFF | If enabled the OSD automatically switches to the first layout during failsafe |
+|  osd_left_sidebar_scroll_step  | 0 | How many units each sidebar step represents. 0 means the default value for the scroll type. |
+|  osd_right_sidebar_scroll_step | 0 | Same as left_sidebar_scroll_step, but for the right sidebar. |
 |  osd_temp_label_align | LEFT | Allows to chose between left and right alignment for the OSD temperature sensor labels. Valid values are `LEFT` and `RIGHT` |
 |  osd_hud_wp_disp | OFF | Controls display of the next waypoints in the HUD.|
 |  osd_ahi_style | DEFAULT | Sets OSD Artificial Horizon style "DEFAULT" or "LINE" for the FrSky Graphical OSD. |
